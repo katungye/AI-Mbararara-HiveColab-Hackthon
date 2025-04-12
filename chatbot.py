@@ -4,6 +4,7 @@ from google import genai
 from google.genai import types
 import pathlib
 
+
 # Load API key from .env file
 config = dotenv_values(".env")
 client_model = genai.Client(api_key=config["apiKey"])
@@ -16,9 +17,7 @@ embedings_model = "gemini-embedding-exp-03-07"
 llm_model = "gemini-1.5-flash"
 
 def process_pdfs(folder_path: str):
-    """
-    Reads all PDF files in the folder, generates embeddings, and uses LLM to explain the content.
-    """
+    
     for file_name in os.listdir(folder_path):
         if file_name.endswith(".pdf"):
             file_path = os.path.join(folder_path, file_name)
