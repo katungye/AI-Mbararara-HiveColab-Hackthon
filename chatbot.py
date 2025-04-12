@@ -9,8 +9,7 @@ import pathlib
 config = dotenv_values(".env")
 client_model = genai.Client(api_key=config["apiKey"])
 
-# Path to the folder containing PDF files
-file_path = pathlib.Path("c:/Users/katun/OneDrive/all staff/Documents/AI-Mbararara-HiveColab-Hackthon/MyDocs")
+
 
 # Models
 embedings_model = "gemini-embedding-exp-03-07"
@@ -24,17 +23,7 @@ def process_pdfs(folder_path: str):
             print(f"Processing file: {file_name}")
 
             # Generate embeddings for the PDF
-            with open(file_path, "rb") as file:
-                response = client_model.models.generate_embeddings(
-                    model=embedings_model,
-                    contents=[
-                        types.Part.from_bytes(
-                            data=file.read(),
-                            mime_type="application/pdf",
-                        )
-                    ]
-                )
-                embeddings = response.embeddings
+         
                 print(f"Generated embeddings for {file_name}")
 
             # Use LLM to explain the document
@@ -49,3 +38,9 @@ def process_pdfs(folder_path: str):
 
 # Run the function
 process_pdfs(file_path)
+
+
+for files in os.listdir("c:/Users/katun/OneDrive/all staff/Documents/AI-Mbararara-HiveColab-Hackthon/MyDocs"):
+  print (files)
+  
+  
